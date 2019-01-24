@@ -1,10 +1,8 @@
 package main.java.app.impl;
 
-import main.java.app.api.HttpRequest;
+import main.java.app.contracts.HttpRequest;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Neycho Damgaliev on 1/20/2019.
@@ -15,49 +13,58 @@ public class Request implements HttpRequest {
 
     private String method;
     private String requestUrl;
-    private HashMap<String,String> headers;
-    private HashMap<String, String> bodyParameters;
+    private Map<String, String> headers;
+    private Map<String, String> bodyParameters;
 
     public Request(String request) {
-        List<String> requestLines = Arrays.asList(request.split(System.lineSeparator()));
+        this.init(request);
+    }
+
+    private void init(String request) {
+//        boolean newLine = false;
+        String[] split = request.split(System.lineSeparator() + System.lineSeparator());
+        List<String> requestLines = Arrays.asList(split[0].split(System.lineSeparator()));
 
 
         this.setMethod(requestLines.get(0).split("\\s+")[0]);
         this.setRequestUrl(requestLines.get(0).split("\\s+")[1]);
 
-        this.headers = new HashMap<>();
-        this.bodyParameters = new HashMap<>();
+        this.headers = new LinkedHashMap<>();
+        this.bodyParameters = new LinkedHashMap<>();
+
 
         this.setHeaders(requestLines);
-        this.setBodyParameters(requestLines);
-
-    }
-
-    private void setHeaders (List<String> requestLines) {
-        requestLines.stream()
-                .skip(1)
-                .filter(rl->rl.contains(": "))
-                .map(rl->rl.split(": "))
-                .forEach(rlKvp -> this.addHeader(rlKvp[0],rlKvp[1]));
-    }
-
-    private void setBodyParameters (List<String> requestLines) {
-        if (!requestLines.get(requestLines.size() - 1).equals(System.lineSeparator())) {
-            Arrays.stream(requestLines.get(requestLines.size() - 1)
-                    .split("&"))
-                    .map(rlBodyParams -> rlBodyParams.split("="))
-                    .forEach(rlKVPbodyParam -> this.addBodyParameter(rlKVPbodyParam[0],rlKVPbodyParam[1]));
+        if (split.length > 1) {
+            this.setBodyParameters(Arrays.asList(split[1].split(System.lineSeparator())));
         }
     }
 
-    @Override
-    public HashMap<String, String> getHeaders() {
-        return this.headers;
+    private void setHeaders(List<String> requestLines) {
+        requestLines.stream()
+                .skip(1)
+                .filter(rl -> rl.contains(": "))
+                .map(rl -> rl.split(": "))
+                .forEach(rlKvp -> this.addHeader(rlKvp[0], rlKvp[1]));
+    }
+
+    // HANDLES MULTILINE BODY PARAMETES
+    private void setBodyParameters(List<String> requestLines) {
+        requestLines.forEach(line -> {
+            Arrays.stream(line
+                    .split("&"))
+                    .map(kvpEl->kvpEl.split("="))
+                    .forEach(kvp->this.addBodyParameter(kvp[0],kvp[1]));
+        });
     }
 
     @Override
-    public HashMap<String, String> getBodyParameters() {
-        return this.bodyParameters;
+    public Map<String, String> getHeaders() {
+        return Collections.unmodifiableMap(this.headers);
+    }
+
+    @Override
+    public Map<String, String> getBodyParameters() {
+        return Collections.unmodifiableMap(this.bodyParameters);
     }
 
     @Override
@@ -82,12 +89,12 @@ public class Request implements HttpRequest {
 
     @Override
     public void addHeader(String header, String value) {
-        this.headers.put(header,value);
+        this.headers.put(header, value);
     }
 
     @Override
     public void addBodyParameter(String parameter, String value) {
-        this.bodyParameters.put(parameter,value);
+        this.bodyParameters.put(parameter, value);
     }
 
     @Override

@@ -1,14 +1,16 @@
-package main.java.app.api;
+package main.java.app.contracts;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by Neycho Damgaliev on 1/20/2019.
  */
 public interface HttpRequest {
-    HashMap<String,String> getHeaders();
+    Map<String,String> getHeaders();
 
-    HashMap<String,String> getBodyParameters();
+    Map<String,String> getBodyParameters();
 
     String getMethod();
 
