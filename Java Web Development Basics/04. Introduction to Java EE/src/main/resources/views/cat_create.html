@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://java.sun.com/jsf/html">
+<head>
+    <meta charset="UTF-8">
+    <title>FDMC</title>
+</head>
+<body>
+<h1>Create a Cat!</h1>
+<form action="/cats/create" method="post">
+    <div>
+        <label for="nameInput">Name:
+            <input id="nameInput" type="text" name="name"/>
+        </label>
+    </div>
+    <div>
+        <label for="breedInput">Breed:
+            <input id="breedInput" type="text" name="breed"/>
+        </label>
+    </div>
+    <div>
+        <label for="colorInput">Color:
+            <input id="colorInput" type="text" name="color"/>
+        </label>
+    </div>
+    <div>
+        <label for="ageInput">Age:
+            <input id="ageInput" type="number" min="0" name="age"/>
+        </label>
+    </div>
+    <div>
+        <button type="submit">Create Cat!</button>
+    </div>
+</form>
+<a href="/">Back to home!</a>
+</body>
+</html>
