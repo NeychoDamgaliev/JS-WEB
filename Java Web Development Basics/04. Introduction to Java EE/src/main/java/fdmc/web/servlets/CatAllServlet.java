@@ -42,7 +42,7 @@ public class CatAllServlet extends HttpServlet {
 
         if (cats == null || cats.size() == 0) {
             htmlFileContent = htmlFileContent.replace("{{allCats}}",
-                    "There are no cats. <a href=\"/cats/create\">Create some.</a>");
+                    "There are no cats. <a href=\"/cats/create\">Create some!</a>");
         } else {
             StringBuilder aS = new StringBuilder();
             cats.forEach(cat->aS
