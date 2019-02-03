@@ -9,7 +9,13 @@ public class HtmlReaderImpl implements HtmlReader {
     public  String readHtmlFile(String htmlFilePath) {
         StringBuilder htmlFileContent = new StringBuilder();
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(htmlFilePath))));
+            File file = new File(htmlFilePath.substring(1).replaceAll("%20"," "));
+            BufferedReader reader =
+                    new BufferedReader(
+                            new InputStreamReader(
+                                    new FileInputStream(file)
+                            )
+                    );
 
             String line;
 

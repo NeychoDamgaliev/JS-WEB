@@ -1,5 +1,6 @@
 package chushka.web.servlets;
 
+import chushka.constants.HTMLFilePaths;
 import chushka.domain.models.view.AllProductsViewModel;
 import chushka.service.ProductService;
 import chushka.utils.HtmlReader;
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static chushka.constants.HTMLFilePaths.*;
+
 /**
  * Created by Neycho Damgaliev on 2/2/2019.
  */
@@ -22,7 +25,6 @@ import java.util.stream.Collectors;
 @WebServlet("/")
 public class IndexServlet extends HttpServlet {
 
-    private final static String INDEX_HTML_FILE_PATH = "D:\\SoftUni\\JAVA-WEB\\Java Web Development Basics\\05. Java EE Servlet API\\src\\main\\resources\\views\\index.html";
 
     private final ProductService productService;
     private final HtmlReader htmlReader;
@@ -37,7 +39,8 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String htmlFileContent = this.htmlReader.readHtmlFile(INDEX_HTML_FILE_PATH);
+        String htmlFileContent = this.htmlReader.readHtmlFile(
+                this.getClass().getClassLoader().getResource(INDEX_HTML_FILE_PATH).getPath());
         htmlFileContent = htmlFileContent.replace("{{productsList}}",this.formatListItems());
         resp.getWriter().println(htmlFileContent);
     }

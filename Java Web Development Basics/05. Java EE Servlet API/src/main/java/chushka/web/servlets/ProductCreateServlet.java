@@ -13,14 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import static chushka.constants.HTMLFilePaths.*;
 
 /**
  * Created by Neycho Damgaliev on 2/2/2019.
  */
 @WebServlet("/products/create")
 public class ProductCreateServlet extends HttpServlet {
-
-    private final static String CREATE_PRODUCT_HTML_FILE_PATH = "D:\\SoftUni\\JAVA-WEB\\Java Web Development Basics\\05. Java EE Servlet API\\src\\main\\resources\\views\\create-product.html";
 
     private final ProductService productService;
     private final HtmlReader htmlReader;
@@ -33,7 +32,8 @@ public class ProductCreateServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String htmlFileContent = this.htmlReader.readHtmlFile(CREATE_PRODUCT_HTML_FILE_PATH)
+        String htmlFileContent = this.htmlReader.readHtmlFile(
+                this.getClass().getClassLoader().getResource(CREATE_PRODUCT_HTML_FILE_PATH).getPath())
                 .replace("{{typeOptions}}",this.formatTypeOptions());
 
         resp.getWriter().println(htmlFileContent);

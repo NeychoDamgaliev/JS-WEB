@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static chushka.constants.HTMLFilePaths.*;
+
 /**
  * Created by Neycho Damgaliev on 2/2/2019.
  */
 
 @WebServlet("/products/details")
 public class ProductDetailsServlet extends HttpServlet {
-
-    private static final String PRODUCT_DETAILS_HTML_FILE_PATH = "D:\\SoftUni\\JAVA-WEB\\Java Web Development Basics\\05. Java EE Servlet API\\src\\main\\resources\\views\\details-product.html";
 
     private final ProductService productService;
     private final HtmlReader reader;
@@ -32,7 +32,8 @@ public class ProductDetailsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String htmlFileContent = this.reader.readHtmlFile(PRODUCT_DETAILS_HTML_FILE_PATH);
+        String htmlFileContent = this.reader.readHtmlFile(
+                this.getClass().getClassLoader().getResource(PRODUCT_DETAILS_HTML_FILE_PATH).getPath());
         ProductServiceModel name = this.productService.findProductByName(req.getParameter("name"));
         htmlFileContent = htmlFileContent.replace("{{productName}}",name.getName())
                 .replace("{{productDescription}}",name.getDescription())
