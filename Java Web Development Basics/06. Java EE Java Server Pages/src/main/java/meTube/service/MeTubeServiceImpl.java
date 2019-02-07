@@ -33,7 +33,7 @@ public class MeTubeServiceImpl implements MeTubeService {
     @Override
     public TubeServiceModel findTubeByName(String name) {
 
-        Tube tube = this.repository.findByName(name).orElse(null);
+        Tube tube = this.repository.findByName(name);
         TubeServiceModel tsm = this.modelMapper.map(tube, TubeServiceModel.class);
 
         return tsm;

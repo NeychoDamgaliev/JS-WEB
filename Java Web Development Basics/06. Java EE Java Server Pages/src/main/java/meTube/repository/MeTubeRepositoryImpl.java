@@ -22,18 +22,21 @@ public class MeTubeRepositoryImpl implements MeTubeRepository {
 
 
     @Override
-    public Optional<Tube> findByName(String name) {
+    public Tube findByName(String name) {
 //        this.entityManager.getTransaction().begin();
 
-        Optional<Tube> tube = Optional.ofNullable(entityManager.createQuery(
+        List<Tube> tubes = entityManager.createQuery(
                 "SELECT t " +
                         "FROM tubes t " +
-                        "WHERE t.name = :name", Tube.class)
+                          "WHERE t.name = :name", Tube.class)
                 .setParameter("name", name)
-                .getSingleResult());
+                .getResultList();
 
+        if(tubes.size() != 0) {
+            return tubes.get(0);
+        }
 //        this.entityManager.getTransaction().commit();
-        return tube;
+        return null;
     }
 
     @Override

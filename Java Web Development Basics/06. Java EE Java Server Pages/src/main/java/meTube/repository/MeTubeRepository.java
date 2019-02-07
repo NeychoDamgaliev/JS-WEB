@@ -10,6 +10,6 @@ import java.util.Optional;
  */
 public interface MeTubeRepository extends GenericRepository<Tube, String> {
 
-    Optional<Tube> findByName(String name);
+    Tube findByName(String name);
 
 }

@@ -33,12 +33,16 @@ public class TubeDetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = URLDecoder.decode(req.getParameter("name"),"UTF-8");
-        TubeServiceModel tubeByName = this.tubeService.findTubeByName(name);
-        TubeDetailsVM tubeDetailsVM = this.modelMapper.map(tubeByName, TubeDetailsVM.class);
-        tubeDetailsVM.setTitle(tubeByName.getName());
+        try {
+            TubeServiceModel tubeByName = this.tubeService.findTubeByName(name);
+            TubeDetailsVM tubeDetailsVM = this.modelMapper.map(tubeByName, TubeDetailsVM.class);
+            tubeDetailsVM.setTitle(tubeByName.getName());
 
-        req.setAttribute("tube",tubeDetailsVM);
+            req.setAttribute("tube", tubeDetailsVM);
 
-        req.getRequestDispatcher("/jsps/details-tube.jsp").forward(req,resp);
+            req.getRequestDispatcher("/jsps/details-tube.jsp").forward(req, resp);
+        } catch (Exception ex) {
+           resp.sendRedirect("/");
+        }
     }
 }
