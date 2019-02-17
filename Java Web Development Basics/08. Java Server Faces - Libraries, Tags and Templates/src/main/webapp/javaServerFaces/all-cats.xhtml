@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/base-layout.xhtml">
+    <ui:define name="main-content">
+
+        <div class="jumbotron justify-content-center jumbotron-background">
+            <div class="row">
+                <div class="col col-md-12 d-flex justify-content-center">
+                    <h1>All Cats!</h1>
+                </div>
+            </div>
+
+            <c:if test="#{cats.catsList.size() != 0}">
+                <h:form>
+                    <h:inputHidden value="#{cats.sortDirection}"/>
+                    <h:dataTable value="#{cats.catsList}" var="cat" styleClass="table table-striped">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:commandLink action="#{cats.sort()}">Name</h:commandLink>
+                            </f:facet>
+                            #{cat.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Breed</f:facet>
+                            #{cat.breed}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Color</f:facet>
+                            #{cat.color}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Gender</f:facet>
+                            #{cat.gender}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Price</f:facet>
+                            $#{cat.price}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Added On</f:facet>
+                            #{cat.addedOn}
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </c:if>
+
+            <!--<hr class="hr-background" />
+            <table class="table table-striped">
+            <thead><tr><th scope="col">Name</th><th scope="col">Breed</th><th scope="col">Color</th>
+            <th scope="col">Gender</th><th scope="col">Price</th>
+            <th scope="col">Added On</th></tr></thead><tbody
+             id="j_id_p:tbody_element"><tr><td></td></tr></tbody></table>-->
+        </div>
+
+    </ui:define>
+</ui:composition>
+
+</html>

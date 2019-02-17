@@ -1,18 +1,12 @@
-package fdmc.domain.models.binding;
+package fdmc.domain.models.view;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by Neycho Damgaliev on 2/17/2019.
  */
-public class CatCreateBindingModel {
+public class CatViewModel {
     private String name;
     private String breed;
     private String color;
@@ -22,17 +16,14 @@ public class CatCreateBindingModel {
     private Date addedOn;
     private Boolean hasPassport;
 
-    public CatCreateBindingModel() {
+    public CatViewModel() {
     }
 
-    @NotNull
-    @Length(min = 2, max = 10)
+
     public String getName() {
         return name;
     }
 
-    @NotNull
-    @Length(min = 5, max = 20)
     public String getBreed() {
         return breed;
     }
@@ -41,9 +32,6 @@ public class CatCreateBindingModel {
         return color;
     }
 
-    @NotNull
-    @Min(value = 1)
-    @Max(value = 31)
     public Integer getAge() {
         return age;
     }
@@ -52,8 +40,6 @@ public class CatCreateBindingModel {
         return gender;
     }
 
-    @NotNull
-    @DecimalMin(value = "0.01")
     public BigDecimal getPrice() {
         return price;
     }
@@ -65,6 +51,7 @@ public class CatCreateBindingModel {
     public Boolean getHasPassport() {
         return hasPassport;
     }
+
 
     public void setName(String name) {
         this.name = name;

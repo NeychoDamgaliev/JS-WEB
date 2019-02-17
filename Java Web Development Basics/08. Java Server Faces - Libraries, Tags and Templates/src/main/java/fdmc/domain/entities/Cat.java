@@ -48,7 +48,7 @@ public class Cat extends BaseEntity {
     }
 
     // age – an Integer, must be between 1 and 31.
-    @Column(name = "age")
+    @Column(name = "age", nullable = false)
     @Min(value = 1)
     @Max(value = 31)
     public Integer getAge() {
@@ -62,17 +62,19 @@ public class Cat extends BaseEntity {
     }
 
     // price – a decimal value, must be at least 0.01.
+    @Column(name = "price", nullable = false)
     @DecimalMin(value = "0.01")
     public BigDecimal getPrice() {
         return price;
     }
 
     // addedOn – a date without time.
-    @Column(name = "added_on")
+    @Column(name = "added_on",nullable = false)
     @Temporal(TemporalType.DATE)
     public Date getAddedOn() {
         return addedOn;
     }
+
     // hasPassport – a boolean value.
     @Column(name = "has_passport", columnDefinition = "boolean default false", nullable = false)
     public Boolean getHasPassport() {
