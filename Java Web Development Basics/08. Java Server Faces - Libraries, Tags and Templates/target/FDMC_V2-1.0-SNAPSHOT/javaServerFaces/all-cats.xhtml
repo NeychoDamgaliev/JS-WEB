@@ -20,32 +20,53 @@
 
             <c:if test="#{cats.catsList.size() != 0}">
                 <h:form>
-                    <h:inputHidden value="#{cats.sortDirection}"/>
                     <h:dataTable value="#{cats.catsList}" var="cat" styleClass="table table-striped">
                         <h:column>
                             <f:facet name="header">
-                                <h:commandLink action="#{cats.sort()}">Name</h:commandLink>
+                                <h:commandLink action="#{cats.sortByName()}" value="Name">
+                                    <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
+                                </h:commandLink>
                             </f:facet>
                             #{cat.name}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Breed</f:facet>
+                            <f:facet name="header">
+                                <h:commandLink action="#{cats.sortByBreed()}" value="Breed">
+                                    <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
+                                </h:commandLink>
+                            </f:facet>
                             #{cat.breed}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Color</f:facet>
+                            <f:facet name="header">
+                                <h:commandLink action="#{cats.sortByColor()}" value="Color">
+                                    <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
+                                </h:commandLink>
+                            </f:facet>
                             #{cat.color}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Gender</f:facet>
+                            <f:facet name="header">
+                                <h:commandLink action="#{cats.sortByGender()}" value="Gender">
+                                    <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
+                                </h:commandLink>
+                            </f:facet>
                             #{cat.gender}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Price</f:facet>
+                            <f:facet name="header">
+                                <h:commandLink action="#{cats.sortByPrice()}" value="Price">
+                                    <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
+                                </h:commandLink>
+                            </f:facet>
                             $#{cat.price}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Added On</f:facet>
+                            <f:facet name="header">
+                                <h:commandLink action="#{cats.sortByAddedOn()}" value="Added On">
+                                    <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
+                                </h:commandLink>
+                            </f:facet>
                             #{cat.addedOn}
                         </h:column>
                     </h:dataTable>
