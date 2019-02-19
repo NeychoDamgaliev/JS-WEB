@@ -66,6 +66,22 @@ public class CatRepositoryImpl implements CatRepository {
         }
     }
 
+
+    @Override
+    public List<Cat> findAllCatsOrdered(String prop, String dir) {
+        try {
+            entityManager.getTransaction().begin();
+            List<Cat> cats = entityManager.createQuery(
+                    "SELECT c FROM Cat c ORDER BY " + prop + " " + dir,Cat.class)
+                    .getResultList();
+
+            return cats;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            entityManager.getTransaction().commit();
+        }
+    }
 //    @Override
 //    public void remove(String s) {
 //

@@ -68,92 +68,16 @@ public class AllCatsBean implements Serializable {
         this.sortDir = sortDir;
     }
 
-    public void sortByName() {
-        fixSordDirection();
-        if("asc".equals(this.sortDir)) {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> a.getName().compareTo(b.getName()))
-                    .collect(Collectors.toList());
-        } else {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> b.getName().compareTo(a.getName()))
-                    .collect(Collectors.toList());
-        }
-    }
-    public void sortByBreed() {
-        fixSordDirection();
-        if("asc".equals(this.sortDir)) {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> a.getBreed().compareTo(b.getBreed()))
-                    .collect(Collectors.toList());
-        } else {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> b.getBreed().compareTo(a.getBreed()))
-                    .collect(Collectors.toList());
-        }
-    }
 
-    public void sortByColor() {
+    public void sort(String colName) {
         fixSordDirection();
-        if("asc".equals(this.sortDir)) {
-            this.catsList = this.catsList
+        try {
+            this.catsList = this.catService.findAllCatsOrdered(colName.toLowerCase(),this.sortDir.toLowerCase())
                     .stream()
-                    .sorted((a,b) -> a.getColor().compareTo(b.getColor()))
+                    .map(cat -> this.modelMapper.map(cat, CatViewModel.class))
                     .collect(Collectors.toList());
-        } else {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> b.getColor().compareTo(a.getColor()))
-                    .collect(Collectors.toList());
-        }
-    }
-
-    public void sortByGender() {
-        fixSordDirection();
-        if("asc".equals(this.sortDir)) {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> a.getGender().compareTo(b.getGender()))
-                    .collect(Collectors.toList());
-        } else {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> b.getGender().compareTo(a.getGender()))
-                    .collect(Collectors.toList());
-        }
-    }
-
-    public void sortByPrice() {
-        fixSordDirection();
-        if("asc".equals(this.sortDir)) {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> a.getPrice().compareTo(b.getPrice()))
-                    .collect(Collectors.toList());
-        } else {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> b.getPrice().compareTo(a.getPrice()))
-                    .collect(Collectors.toList());
-        }
-    }
-
-    public void sortByAddedOn() {
-        fixSordDirection();
-        if("asc".equals(this.sortDir)) {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> a.getAddedOn().compareTo(b.getAddedOn()))
-                    .collect(Collectors.toList());
-        } else {
-            this.catsList = this.catsList
-                    .stream()
-                    .sorted((a,b) -> b.getAddedOn().compareTo(a.getAddedOn()))
-                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            this.catsList = new ArrayList<>();
         }
     }
 

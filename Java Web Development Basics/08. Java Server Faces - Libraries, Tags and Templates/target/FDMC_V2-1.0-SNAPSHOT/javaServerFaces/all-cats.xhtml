@@ -23,7 +23,7 @@
                     <h:dataTable value="#{cats.catsList}" var="cat" styleClass="table table-striped">
                         <h:column>
                             <f:facet name="header">
-                                <h:commandLink action="#{cats.sortByName()}" value="Name">
+                                <h:commandLink action="#{cats.sort('name')}" value="Name">
                                     <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
                                 </h:commandLink>
                             </f:facet>
@@ -31,7 +31,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:commandLink action="#{cats.sortByBreed()}" value="Breed">
+                                <h:commandLink action="#{cats.sort('breed')}" value="Breed">
                                     <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
                                 </h:commandLink>
                             </f:facet>
@@ -39,7 +39,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:commandLink action="#{cats.sortByColor()}" value="Color">
+                                <h:commandLink action="#{cats.sort('color')}" value="Color">
                                     <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
                                 </h:commandLink>
                             </f:facet>
@@ -47,7 +47,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:commandLink action="#{cats.sortByGender()}" value="Gender">
+                                <h:commandLink action="#{cats.sort('gender')}" value="Gender">
                                     <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
                                 </h:commandLink>
                             </f:facet>
@@ -55,7 +55,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:commandLink action="#{cats.sortByPrice()}" value="Price">
+                                <h:commandLink action="#{cats.sort('price')}" value="Price">
                                     <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
                                 </h:commandLink>
                             </f:facet>
@@ -63,7 +63,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:commandLink action="#{cats.sortByAddedOn()}" value="Added On">
+                                <h:commandLink action="#{cats.sort('added_on')}" value="Added On">
                                     <f:param name="sortDir" value="#{cats.sortDir == 'asc'?'desc':'asc'}" />
                                 </h:commandLink>
                             </f:facet>

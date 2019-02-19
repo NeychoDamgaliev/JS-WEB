@@ -44,4 +44,15 @@ public class CatServiceImpl implements CatService {
             return  null;
         }
     }
+
+    @Override
+    public List<CatServiceModel> findAllCatsOrdered(String propName, String orderDir) {
+        try{
+            return this.catRepository.findAllCatsOrdered(propName,orderDir).stream()
+                    .map(cat -> this.modelMapper.map(cat, CatServiceModel.class))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            return  null;
+        }
+    }
 }

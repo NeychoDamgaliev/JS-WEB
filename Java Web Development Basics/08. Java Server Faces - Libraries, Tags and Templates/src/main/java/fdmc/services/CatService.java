@@ -13,4 +13,7 @@ public interface CatService {
     boolean saveCat(CatServiceModel cat);
 
     List<CatServiceModel> findAllCats();
+
+    List<CatServiceModel> findAllCatsOrdered(String propName, String orderDir);
+
 }
