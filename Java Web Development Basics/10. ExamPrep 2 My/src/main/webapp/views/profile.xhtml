@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:include src="templates/head.xhtml"/>
+<h:body>
+    <div class="container-fluid">
+        <ui:include src="templates/user-navbar.xhtml"/>
+        <main>
+            <hr class="my-2"/>
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6 d-flex flex-column">
+                        <c:choose>
+                            <c:when test="#{userProfile.model.gender.toString() == 'Male'}">
+                                <h:graphicImage library="casebook-lib" name="/img/male.png"
+                                                width="200" height="200" styleClass="mx-auto img-thumbnail"/>
+                            </c:when>
+                            <c:otherwise>
+                                <h:graphicImage library="casebook-lib" name="/img/female.png"
+                                                width="200" height="200" styleClass="mx-auto img-thumbnail"/>
+                            </c:otherwise>
+                        </c:choose>
+
+
+                        <h4 class="mx-auto mt-3">#{userProfile.model.username}</h4>
+                        <h5 class="mx-auto mt-3">#{userProfile.model.gender}</h5>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3"/>
+        </main>
+
+        <ui:include src="templates/footer.xhtml"/>
+    </div>
+</h:body>
+</html>
