@@ -13,6 +13,7 @@ import javax.inject.Named;
 @Named("registerBean")
 @RequestScoped
 public class RegisterBean extends BaseBean {
+
     private UserRegisterBindingModel userRegisterBindingModel;
 
     private UserService userService;
@@ -42,13 +43,16 @@ public class RegisterBean extends BaseBean {
     }
 
     public void register() {
-        if(!this.userRegisterBindingModel.getPassword()
+        if (!this.userRegisterBindingModel.getPassword()
                 .equals(this.userRegisterBindingModel.getConfirmPassword())) {
             return;
         }
 
-        this.userService.createUser(
+        UserServiceModel user = this.userService.createUser(
                 this.modelMapper.map(this.userRegisterBindingModel, UserServiceModel.class));
-        this.redirect("/login");
+
+        if (user != null) {
+            this.redirect("/login");
+        }
     }
 }

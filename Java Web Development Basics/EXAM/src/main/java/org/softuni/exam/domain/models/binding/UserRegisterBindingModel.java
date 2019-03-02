@@ -1,5 +1,7 @@
 package org.softuni.exam.domain.models.binding;
 
+import javax.validation.constraints.NotNull;
+
 public class UserRegisterBindingModel {
     private String username;
 

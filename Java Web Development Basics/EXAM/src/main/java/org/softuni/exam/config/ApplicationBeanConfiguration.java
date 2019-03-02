@@ -10,7 +10,7 @@ public class ApplicationBeanConfiguration {
     @Produces
     public EntityManager entityManager() {
         return Persistence
-                .createEntityManagerFactory("Sboj")
+                .createEntityManagerFactory("exodiaPU")
                 .createEntityManager();
     }
 

@@ -9,7 +9,7 @@ public abstract class BaseBean {
             FacesContext
                     .getCurrentInstance()
                     .getExternalContext()
-                    .redirect("/views" + url + ".jsf");
+                    .redirect(url);
         } catch (IOException e) {
             e.printStackTrace();
         }

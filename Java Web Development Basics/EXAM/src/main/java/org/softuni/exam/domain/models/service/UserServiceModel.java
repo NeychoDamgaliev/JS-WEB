@@ -1,5 +1,7 @@
 package org.softuni.exam.domain.models.service;
 
+import javax.validation.constraints.NotNull;
+
 public class UserServiceModel {
     private String id;
 
@@ -12,6 +14,7 @@ public class UserServiceModel {
     public UserServiceModel() {
     }
 
+    @NotNull
     public String getId() {
         return this.id;
     }
@@ -20,6 +23,7 @@ public class UserServiceModel {
         this.id = id;
     }
 
+    @NotNull
     public String getUsername() {
         return this.username;
     }
@@ -28,6 +32,7 @@ public class UserServiceModel {
         this.username = username;
     }
 
+    @NotNull
     public String getPassword() {
         return this.password;
     }
@@ -36,6 +41,7 @@ public class UserServiceModel {
         this.password = password;
     }
 
+    @NotNull
     public String getEmail() {
         return this.email;
     }

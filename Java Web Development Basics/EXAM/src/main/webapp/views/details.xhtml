@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:include src="templates/head.xhtml"/>
+<h:body>
+    <div class="container-fluid">
+        <ui:include src="templates/user-navbar.xhtml"/>
+
+        <!--<main class="mt-3">-->
+            <!--<hr class="bg-exodia hr-2"/>-->
+            <!--<h1 class="text-center text-exodia">Document - 904c7416-35d2-11e9-b210-d663bd873d93</h1>-->
+            <!--<hr class="bg-exodia hr-2 w-75"/>-->
+            <!--<form class="mx-auto w-75" method="post" action="/login">-->
+                <!--<div class="form-group">-->
+                    <!--<div class="label-center d-flex justify-content-center">-->
+                        <!--<label for="title" class="text-exodia h3">Title</label>-->
+                    <!--</div>-->
+                    <!--<input type="text" class="form-control" id="title" placeholder="Title..." name="title" value="An essay for Global Polution." disabled="true" />-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<div class="label-center d-flex justify-content-center">-->
+                        <!--<label for="content" class="text-exodia h3">Content</label>-->
+                    <!--</div>-->
+                    <!--<textarea class="form-control" id="content" name="content" rows="10" placeholder="Content..." disabled="true" >Air pollution is one of the most dangerous forms of pollution. A biological, chemical, and physical alteration of the air occurs when smoke, dust, and any harmful gases enter into the atmosphere and make it difficult for all living beings to survive as the air becomes contaminated. Burning of fossil fuels, agriculture related activities, mining operations, exhaust from industries and factories, and household cleaning products entail air pollution. People release a huge amount of chemical substances in the air every day. The effects of air pollution are alarming. It causes global warming, acid rains, respiratory and heart problems, and eutrophication. A lot of wildlife species are forced to change their habitat in order to survive.-->
+
+<!--Soil pollution occurs when the presence of pollutants, contaminants, and toxic chemicals in the soil is in high concentration that has negative effect on wildlife, plants, humans, and ground water. Industrial activity, waste disposal, agricultural activities, acid rain, and accidental oil spill are the main causes of soil pollution. This type of contamination influence health of humans, affects the growth of plants, decreases soil fertility, and changes the soil structure.-->
+
+<!--Water pollution is able to lead our world on a path of destruction. Water is one of the greatest natural resources of the whole humanity. Nothing will be able to live without water. However, we do not appreciate this gift of nature and pollute it without thinking. The key causes of the water pollution are: industrial waste, mining activities, sewage and waste water, accidental oil leakage, marine dumping, chemical pesticides and fertilizers, burning of fossil fuels, animal waste, urban development, global warming, radioactive waste, and leakage from sewer lines. There is less water available for drinking, cooking, irrigating crops, and washing.</textarea>-->
+                <!--</div>-->
+                <!--<hr class="bg-exodia hr-2"/>-->
+                <!--<div class="button-holder d-flex justify-content-center">-->
+                    <!--<button type="submit" class="btn bg-exodia text-white">Print</button>-->
+                <!--</div>-->
+            <!--</form>-->
+            <!--<hr class="bg-exodia hr-2 mt-5"/>-->
+        <!--</main>-->
+
+        <main class="mt-3">
+            <hr class="bg-exodia hr-2"/>
+            <div class="caption-holder d-flex justify-content-between pt-1">
+                <h5 class="text-left text-muted">Details</h5>
+                <h5 class="text-right text-muted">Document - #{documentDetailsBean.document.id}</h5>
+            </div>
+            <hr class="bg-exodia hr-2"/>
+            <form class="mx-auto w-75" method="post" action="/login">
+                <h1 class="text-center text-exodia">#{documentDetailsBean.document.title}</h1>
+                <hr class="bg-exodia hr-2"/>
+                <p class="text-justify">
+                    #{documentDetailsBean.document.content}
+                </p>
+            </form>
+            <hr class="bg-exodia hr-2 mt-5"/>
+        </main>
+        <ui:include src="templates/footer.xhtml"/>
+    </div>
+</h:body>
+</html>
