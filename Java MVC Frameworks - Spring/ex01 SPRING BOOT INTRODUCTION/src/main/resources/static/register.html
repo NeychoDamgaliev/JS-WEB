@@ -14,9 +14,18 @@
         <div id="regOffer">
             <form action="/reg" method="post">
                 <h2>Reg offer</h2>
-                <input type="number" name="apartmentRent" placeholder="Rent price ...">
-                <input type="text" name="apartmentType" placeholder="Apartment type...">
-                <input type="number" name="agencyCommission" placeholder="Commission rate...">
+                <input type="number" name="apartmentRent" placeholder="Rent price ..."
+                       min="0.001" step="0.001" required="required"
+                       oninvalid="this.setCustomValidity('Rent price should not be empty!')"
+                       oninput="this.setCustomValidity('')"/>
+                <input type="text" name="apartmentType" placeholder="Apartment type..."
+                       oninvalid="this.setCustomValidity('Apartment type should not be empty!')"
+                       oninput="this.setCustomValidity('')" required="required">
+                <input type="number" name="agencyCommission" placeholder="Commission rate..."
+                       oninvalid="this.setCustomValidity('Commission rate should be between 0 and 100%!')"
+                       oninput="this.setCustomValidity('')"
+                       required="required"
+                       min="0" max="100" step="0.01">
                 <button name="regOffer" class="button">REG OFFER</button>
             </form>
         </div>

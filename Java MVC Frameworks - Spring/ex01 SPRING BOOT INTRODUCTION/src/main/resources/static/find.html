@@ -14,9 +14,19 @@
         <div id="regOffer">
             <form action="/find" method="post">
                 <h2>Find offer</h2>
-                <input type="number" name="familyBudget" placeholder="Family budget....">
-                <input type="text" name="familyApartmentType" placeholder="Apartment type...">
-                <input type="text" name="familyName" placeholder="Family name...">
+                <input type="number" name="familyBudget"
+                       oninvalid="this.setCustomValidity('Family budget must be greater than zero(0)!')"
+                       oninput="this.setCustomValidity('')"
+                       min="0.001" step="0.001"
+                       required="required" placeholder="Family budget....">
+                <input type="text" name="familyApartmentType"
+                       oninvalid="this.setCustomValidity('Apartment type should not be empty!')"
+                       oninput="this.setCustomValidity('')"
+                       required="required" placeholder="Apartment type...">
+                <input type="text" name="familyName"
+                       oninvalid="this.setCustomValidity('Family name should not be empty!')"
+                       oninput="this.setCustomValidity('')"
+                       required="required" placeholder="Family name...">
                 <button name="findOffer" class="button">Find offer</button>
             </form>
         </div>
