@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceModel loginUser(UserServiceModel model) {
         User user = this.userRepository.findByUsername(model.getUsername()).orElse(null);
 
-        if(user == null || user.getPassword().equals(DigestUtils.sha256Hex(model.getPassword()))) {
+        if(user == null || !user.getPassword().equals(DigestUtils.sha256Hex(model.getPassword()))) {
             throw new IllegalArgumentException("Wrong username or password!");
         }
 
