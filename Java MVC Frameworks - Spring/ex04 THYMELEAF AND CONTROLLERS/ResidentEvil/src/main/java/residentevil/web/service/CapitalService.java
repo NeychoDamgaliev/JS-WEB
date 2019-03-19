@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface CapitalService {
     List<CapitalListViewModel> findAllCapitals();
+    CapitalListViewModel findById(String id);
 }

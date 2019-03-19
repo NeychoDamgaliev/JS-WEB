@@ -44,4 +44,14 @@ public class Capital extends BaseEntity {
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

@@ -2,7 +2,7 @@ package residentevil.web.domain.models.binding;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import residentevil.web.customValidators.CreatorNameValidation;
+import residentevil.web.domain.entities.Capital;
 import residentevil.web.domain.entities.Virus;
 import residentevil.web.domain.enums.Creator;
 import residentevil.web.domain.enums.Magnitude;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Neycho Damgaliev on 3/16/2019.
  */
-public class VirusBindingModel implements Bindable<Virus> {
+public class VirusBindingModel {
 
     private String name;
     private String description;
@@ -31,8 +31,8 @@ public class VirusBindingModel implements Bindable<Virus> {
     private Integer hoursUntilTurn;
     private Magnitude magnitude;
     private LocalDate releasedOn;
-    private List<String> capitals;
-
+    //    private List<String> capitals;
+    private List<CapitalBindingModel> capitals;
 
     public VirusBindingModel() {
     }
@@ -57,7 +57,7 @@ public class VirusBindingModel implements Bindable<Virus> {
         this.description = description;
     }
 
-    @Size(max = 50,message = "Maximum of 50 symbols allowed!")
+    @Size(max = 50, message = "Maximum of 50 symbols allowed!")
     public String getSideEffects() {
         return sideEffects;
     }
@@ -102,8 +102,8 @@ public class VirusBindingModel implements Bindable<Virus> {
     }
 
     @NotNull(message = "Invalid turnover rate")
-    @Min(value = 0,message = "Invalid turnover rate")
-    @Max(value = 100,message = "Invalid turnover rate")
+    @Min(value = 0, message = "Invalid turnover rate")
+    @Max(value = 100, message = "Invalid turnover rate")
     public Integer getTurnoverRate() {
         return turnoverRate;
     }
@@ -113,8 +113,8 @@ public class VirusBindingModel implements Bindable<Virus> {
     }
 
     @NotNull(message = "Invalid hours until turn")
-    @Min(value = 1,message = "Invalid hours until turn")
-    @Max(value = 12,message = "Invalid hours until turn")
+    @Min(value = 1, message = "Invalid hours until turn")
+    @Max(value = 12, message = "Invalid hours until turn")
     public Integer getHoursUntilTurn() {
         return hoursUntilTurn;
     }
@@ -143,24 +143,27 @@ public class VirusBindingModel implements Bindable<Virus> {
         this.releasedOn = releasedOn;
     }
 
+
     @NotNull(message = "You must select capitals")
     @NotEmpty(message = "You must select capitals")
-    public List<String> getcapitals() {
+    public List<CapitalBindingModel> getCapitals() {
         return capitals;
     }
 
-    public void setCapitals(List<String> capitals) {
+    public void setCapitals(List<CapitalBindingModel> capitals) {
         this.capitals = capitals;
     }
 
 
-    @Override
-    public BindableType getBindableType() {
-        return null;
-    }
+    //    @NotNull(message = "You must select capitals")
+//    @NotEmpty(message = "You must select capitals")
+//    public List<String> getcapitals() {
+//        return capitals;
+//    }
+//
+//    public void setCapitals(List<String> capitals) {
+//        this.capitals = capitals;
+//    }
 
-    @Override
-    public Class<Virus> getBindableJavaType() {
-        return null;
-    }
+
 }

@@ -3,10 +3,12 @@ package residentevil.web.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import residentevil.web.domain.entities.Capital;
 import residentevil.web.domain.entities.Virus;
 import residentevil.web.domain.models.binding.VirusBindingModel;
 import residentevil.web.domain.models.service.VirusServiceModel;
 import residentevil.web.domain.models.service.VirusShowServiceModel;
+import residentevil.web.domain.models.view.CapitalListViewModel;
 import residentevil.web.repository.VirusRepository;
 
 import java.util.List;
@@ -20,11 +22,13 @@ public class VirusServiceImpl implements VirusService {
 
     private final VirusRepository virusRepository;
     private final ModelMapper modelMapper;
+    private final CapitalService capitalService;
 
     @Autowired
-    public VirusServiceImpl(VirusRepository virusRepository, ModelMapper modelMapper) {
+    public VirusServiceImpl(VirusRepository virusRepository, ModelMapper modelMapper, CapitalService capitalService) {
         this.virusRepository = virusRepository;
         this.modelMapper = modelMapper;
+        this.capitalService = capitalService;
     }
 
     @Override
@@ -35,7 +39,6 @@ public class VirusServiceImpl implements VirusService {
     @Override
     public boolean editVirus(VirusServiceModel model, String id) {
         Virus editedVirus = this.modelMapper.map(model, Virus.class);
-
         Virus virus = this.copyVirusDataToDBObject(editedVirus, id);
         return this.virusRepository.saveAndFlush(virus) != null;
     }
@@ -43,7 +46,7 @@ public class VirusServiceImpl implements VirusService {
     private Virus copyVirusDataToDBObject(Virus editedVirus, String id) {
         Virus virus = new Virus();
         virus.setId(id);
-        virus.setCapitals(editedVirus.getCapitals());
+
         virus.setCreator(editedVirus.getCreator());
         virus.setCurable(editedVirus.getCurable());
         virus.setDeadly(editedVirus.getDeadly());
@@ -55,6 +58,14 @@ public class VirusServiceImpl implements VirusService {
         virus.setReleasedOn(editedVirus.getReleasedOn());
         virus.setSideEffects(editedVirus.getSideEffects());
         virus.setTurnoverRate(editedVirus.getTurnoverRate());
+
+        virus.setCapitals(editedVirus.getCapitals()
+                .stream()
+                .map(capital ->
+                        this.modelMapper.map(
+                                this.capitalService.findById(capital.getId()), Capital.class)
+                )
+                .collect(Collectors.toList()));
 
         return virus;
     }

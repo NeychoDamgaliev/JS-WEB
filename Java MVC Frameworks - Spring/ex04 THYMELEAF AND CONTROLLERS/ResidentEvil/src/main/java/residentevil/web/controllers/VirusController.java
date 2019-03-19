@@ -6,16 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
+import residentevil.web.domain.models.binding.VirusBindingModel;
 import residentevil.web.domain.models.service.VirusServiceModel;
 import residentevil.web.domain.models.service.VirusShowServiceModel;
-import residentevil.web.domain.models.view.CapitalListViewModel;
 import residentevil.web.service.CapitalService;
 import residentevil.web.service.VirusService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Neycho Damgaliev on 3/16/2019.

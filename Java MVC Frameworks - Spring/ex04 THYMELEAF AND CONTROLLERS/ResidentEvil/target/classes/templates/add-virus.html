@@ -10,9 +10,8 @@
     </header>
     <main>
         <div class="container mt-4">
-            <h1>Edit a Virus!</h1>
-            <form th:action="@{/viruses/edit(id=${#request.getParameter('id')})}" method="POST"
-                  th:object="${bindingModel}">
+            <h1>Spread a new Virus!</h1>
+            <form th:action="@{/viruses/add}" method="POST" th:object="${bindingModel}">
                 <!--NAME-->
                 <div class="form-group">
                     <label for="inputVirusName">Name</label>
@@ -138,7 +137,7 @@
                 <div class="form-group">
                     <label for="inputVirusReleaseDate">Release Date</label>
                     <input th:field="*{releasedOn}" th:classappend="${#fields.hasErrors('releasedOn')}? 'is-invalid':''"
-                           type="date" class="form-control" readonly
+                           type="date" class="form-control"
                            id="inputVirusReleaseDate" placeholder="Enter virus Resealse Date...">
                     <small class="text-danger" th:each="error : ${#fields.errors('releasedOn')}"
                            th:text="${error}"></small>
@@ -154,15 +153,11 @@
                         <option th:each="capital : ${allCapitals}"
                                 th:value="${capital.id}" th:text="${capital.name}"></option>
                     </select>
-                        <!--th:selected="${#lists.contains(bindingModel.capitals,capital.name)}"-->
-                    </select>
                     <small class="text-danger" th:each="error : ${#fields.errors('capitals')}"
                            th:text="${error}"></small>
-
-                    <!--<p th:text="${#lists.contains(bindingModel.capitals,'Kabul')}"></p>-->
                 </div>
                 <div class="text-center mt5">
-                    <button type="submit" class="btn re-background">Edit</button>
+                    <button type="submit" class="btn re-background">Spread!</button>
                 </div>
             </form>
         </div>

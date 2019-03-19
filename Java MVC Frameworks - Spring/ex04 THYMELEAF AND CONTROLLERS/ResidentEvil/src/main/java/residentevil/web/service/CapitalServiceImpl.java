@@ -33,4 +33,9 @@ public class CapitalServiceImpl implements CapitalService {
                 .map(c->this.modelMapper.map(c, CapitalListViewModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public CapitalListViewModel findById(String id) {
+        return this.modelMapper.map(this.capitalRepository.findById(id).get(),CapitalListViewModel.class);
+    }
 }
