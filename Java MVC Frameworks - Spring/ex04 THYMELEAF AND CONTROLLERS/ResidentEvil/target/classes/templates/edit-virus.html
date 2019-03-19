@@ -147,15 +147,14 @@
                 <!--AFFECTED CAPITALS-->
                 <div class="form-group">
                     <label for="inputVirusAffectedCapitals">Affected Capitals</label>
-                    <select multiple
-                            th:classappend="${#fields.hasErrors('capitals')}? 'is-invalid':''"
-                            th:field="*{capitals}"
-                            class="form-control" id="inputVirusAffectedCapitals">
-                        <option th:each="capital : ${allCapitals}"
-                                th:value="${capital.id}" th:text="${capital.name}"></option>
-                    </select>
-                        <!--th:selected="${#lists.contains(bindingModel.capitals,capital.name)}"-->
-                    </select>
+                    <select multiple name="capitals"
+                                                         th:classappend="${#fields.hasErrors('capitals')}? 'is-invalid':''"
+                                                         class="form-control" id="inputVirusAffectedCapitals">
+                    <option th:each="capital : ${allCapitals}"
+                            th:value="${capital.id}" th:text="${capital.name}"
+                            th:selected="${bindingModel.getCapitals().contains(capital.name)}"
+                    ></option>
+                </select>
                     <small class="text-danger" th:each="error : ${#fields.errors('capitals')}"
                            th:text="${error}"></small>
 

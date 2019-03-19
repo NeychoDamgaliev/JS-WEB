@@ -22,9 +22,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <th:block th:each="virus : ${allViruses}" th:object="${virus}">
+                <th:block th:each="virus, iter : ${allViruses}" th:object="${virus}">
                     <tr class="text-center">
-                        <th scope="row" th:text="*{id}"></th>
+                        <th scope="row" th:text="${iter.index + 1}"></th>
                         <td th:text="*{name}"></td>
                         <td th:text="*{magnitude}"></td>
                         <td th:text="*{#temporals.format(releasedOn, 'dd-MMM-yyyy')}"></td>

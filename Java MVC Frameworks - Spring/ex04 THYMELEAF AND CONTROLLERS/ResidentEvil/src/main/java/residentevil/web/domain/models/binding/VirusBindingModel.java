@@ -31,8 +31,8 @@ public class VirusBindingModel {
     private Integer hoursUntilTurn;
     private Magnitude magnitude;
     private LocalDate releasedOn;
-    //    private List<String> capitals;
-    private List<CapitalBindingModel> capitals;
+        private List<String> capitals;
+//    private List<CapitalBindingModel> capitals;
 
     public VirusBindingModel() {
     }
@@ -144,26 +144,26 @@ public class VirusBindingModel {
     }
 
 
-    @NotNull(message = "You must select capitals")
-    @NotEmpty(message = "You must select capitals")
-    public List<CapitalBindingModel> getCapitals() {
-        return capitals;
-    }
-
-    public void setCapitals(List<CapitalBindingModel> capitals) {
-        this.capitals = capitals;
-    }
-
-
-    //    @NotNull(message = "You must select capitals")
+//    @NotNull(message = "You must select capitals")
 //    @NotEmpty(message = "You must select capitals")
-//    public List<String> getcapitals() {
+//    public List<CapitalBindingModel> getCapitals() {
 //        return capitals;
 //    }
-//
-//    public void setCapitals(List<String> capitals) {
+
+//    public void setCapitals(List<CapitalBindingModel> capitals) {
 //        this.capitals = capitals;
 //    }
+
+
+        @NotNull(message = "You must select capitals")
+    @NotEmpty(message = "You must select capitals")
+    public List<String> getCapitals() {
+        return capitals;
+    }
+//
+    public void setCapitals(List<String> capitals) {
+        this.capitals = capitals;
+    }
 
 
 }

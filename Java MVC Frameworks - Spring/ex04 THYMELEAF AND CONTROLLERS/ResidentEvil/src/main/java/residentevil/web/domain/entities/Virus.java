@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class Virus extends BaseEntity {
     private List<Capital> capitals;
 
     public Virus() {
+        this.capitals = new ArrayList<>();
     }
 
     //Cannot be empty, should be between 3 and 10 symbols.
@@ -140,7 +142,7 @@ public class Virus extends BaseEntity {
         this.releasedOn = releasedOn;
     }
 
-    @OneToMany(targetEntity = Capital.class)
+    @ManyToMany(targetEntity = Capital.class)
     @JoinTable(
             name = "viruses_capitals",
             joinColumns = @JoinColumn(name = "virus_id", referencedColumnName = "id"),
