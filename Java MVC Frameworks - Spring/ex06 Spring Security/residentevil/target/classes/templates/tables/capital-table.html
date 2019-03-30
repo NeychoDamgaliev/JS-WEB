@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<table class="table">
+    <thead>
+    <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Latitude</th>
+        <th scope="col">Longitude</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="capital, iter : ${allCapitals}" th:object="${capital}">
+        <tr class="text-center">
+            <th scope="row" th:text="${iter.index + 1}"></th>
+            <td th:text="*{name}"></td>
+            <td th:text="*{latitude}"></td>
+            <td th:text="*{longitude}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+</html>
